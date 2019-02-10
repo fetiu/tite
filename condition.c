@@ -76,16 +76,12 @@ bool_t boolConversion(char* statement){
 		if( result || strcmp(tok,"0") == 0 ) {
 			//if we can transfile, just return here a string of ("idx %s %d", op, result);
 			switch(op[0]){
-				case '!': //!=
+				case '!':
 					return idx != result;
 				case '>':
-					return (op[1]=='=')? 
-						idx >= result 
-						: idx > result;
+					return (op[1]=='=')? idx >= result : idx > result;
 				case '<':
-					return (op[1]=='=')? 
-						idx <= result 
-						: idx < result;
+					return (op[1]=='=')? idx <= result : idx < result;
 				case '=':
 					return idx == result;
 			}
