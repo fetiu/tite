@@ -2,39 +2,30 @@
 	Prototype of Condition Statement rule using Ternary operator
 	Property of the Project Dejava. Copyright 2019, Jake Fetiu.	
 */
-
-#include<stdio.h> 
-#include<string.h>
-#include<stdlib.h>
-#define println(fmt,...) printf(fmt"\n", ##__VA_ARGS__)
-#define If(x) boolConversion(#x"?")
-#define Else :
-#define For(i,d,x) idx = (int)i-x; while( d != (idx+=x) )
-#define DELIM "=!<>? "
-
-static int idx;
-typedef enum { False, True } bool_t;
-bool_t boolConversion(char* statement);
+#include"dejava.h"
 
 int main(){
 	bool_t dejava = False;
 	
 	/* basic condition statement. notice that there's no if */
-	For( 0, 6, +1 ){ //iterates 0->5
+	For( 0, 6, +1 )
+	{ 
 		idx == 0 || idx == 4?  
 			println("hello world")
 		Else idx <= 3 ? 
 			println("hello friend %d", idx)
 		Else 
 			println("welcome to the world of Dejava"); //end of condition
-	}
+	}//For iterates 0->5. this is temprorary expression.
+	
 	println();
 	println("dejava loves %s.", dejava++? "Human" Else "Inline Statement" );
 	println("dejava loves %s.", dejava++? "Human" Else "Inline Statement" );
 	println();
 	
 	/* Humanic condition statement using 'If' boolean conversion*/
-	For( 0, 6, +1 ){
+	For( 0, 6, +1 )
+	{
 		If (idx = 0) ? 
 			println("'If' enables to use just one equal sign")
 			
