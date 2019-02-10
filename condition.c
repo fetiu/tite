@@ -17,9 +17,9 @@ typedef enum { False, True } bool_t;
 bool_t boolConversion(char* statement);
 
 int main(){
-	/* basic condition statement. notice that there's no if */
 	bool_t dejava = False;
 	
+	/* basic condition statement. notice that there's no if */
 	For( 0, 6, +1 ){ //iterates 0->5
 		idx == 0 || idx == 4?  
 			println("hello world")
