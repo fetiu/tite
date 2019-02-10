@@ -7,7 +7,7 @@
 int main(){
 	bool_t dejava = False;
 	
-	/* basic condition statement. notice that there's no if */
+	/* basic condition statement. notice that there's no 'if' */
 	For( 0, 6, +1 )
 	{ 
 		idx == 0 || idx == 4?  //idx is temporary reserved word.
@@ -18,9 +18,10 @@ int main(){
 			println("welcome to the world of Dejava"); //end of condition
 	}//For iterates 0->5. this is temprorary expression.
 	
-	println();
-	println("dejava loves %s.", dejava++? "Human" Else "Inline Statement" );
-	println("dejava loves %s.", dejava++? "Human" Else "Inline Statement" );
+	
+	For(2,0,-1)
+		printf("\ndejava loves %s.", dejava++? "Human" Else "Inline Statement" );
+	printf("\n"); // Instead, you can use below.
 	println();
 	
 	/* Humanic condition statement using 'If' boolean conversion*/
