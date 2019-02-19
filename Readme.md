@@ -8,7 +8,7 @@ def main( ) {
 }
 ```
 
-Dejava는 `C`의 기능적 단순함을 유지하면서, `Python`, `TypeScript`, `Scala`와 같은 함수형 언어의 간결함을 추구하는 언어이다. (rust나 go와도 다소 비슷할 수 있다. 최신 언어 트렌드를 반영하다보니)
+Dejava는 `C`의 기능적 단순함을 유지하면서, `Python`의 간결함과, `TypeScript`의 정적 타이핑, `Scala`와 같은 함수형 언어의 특징을 추구하는 언어이다. (rust나 go와도 다소 비슷할 수 있다. 최신 언어 트렌드를 반영하다보니)
 
 > 즉, 인간과 컴퓨터 모두 읽기 쉬운 언어를 목표로 한다.
 
@@ -51,6 +51,8 @@ item2: (int) 5
 
 ## Primitive data syntax & types
 
+몇몇 원시타입이 
+표현 방식은 다소 변경될 수 있다.
 ```rust
 //number
 int 1
