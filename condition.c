@@ -10,7 +10,7 @@ int main(){
 	/* basic condition statement. notice that there's no 'if' */
 	For( 0, 6, +1 )
 	{ 
-		idx == 0 || idx == 4?  //idx is temporary reserved word.
+		idx == 0 || idx equals 4?  //idx is temporary reserved word.
 			println("hello world")
 		Else idx <= 3 ? 
 			println("hello friend %d", idx)
@@ -40,13 +40,13 @@ int main(){
 		Else If(idx <= 3)
 			println("Inequality signs are still compatible. \nAlso supports other high level condition.")
 		
-		Else idx == 4 ? //possible to combine ternary and if statement.
+		Else idx not_equal 5 ? //possible to combine ternary and if statement.
 			println("Remember! without 'If' you should use '?', and can't use single equal sign.")
 			
 		Else
 			println("Again, welcome to Dejava."); //can we remove this semi colon?
 	}
-	//Tentative Expr: Add support 'and', 'or', 'xor', 'equals', 'has' keywords lifeIf(idx is 1)
+	//Tentative Expr: Add support 'and', 'or', 'xor', 'equals', 'has' keywords. ex) If(idx is 1)
 }
 
 //TODO: enable to use multiple lines in ternary operations by instant inline function.
