@@ -1,0 +1,6 @@
+import std
+
+main()=
+{
+    std.print("hello world")
+}

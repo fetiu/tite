@@ -1,0 +1,15 @@
+import std
+
+msg1()str="hello"
+msg2()str="world"
+
+catprint(a:str,b:str)=
+{
+  buf: str = a + b
+  std.print(buf)
+}
+
+main()=
+{
+  catprint(msg1(),msg2())
+}

@@ -1,0 +1,27 @@
+type pos [x:int, y:int]
+
+type PosMan
+[
+  origin:pos
+
+  init(org:pos)=
+  {
+    origin = pos
+    return
+  }
+
+  getorigin()pos=
+  {
+    return origin
+  }
+
+  setorigin(x:int,y:int)=
+  {
+    pos = (x,y)
+  } 
+]
+
+main(void)int=
+{
+  pm:PosMan=(origin=(0,0))
+}
