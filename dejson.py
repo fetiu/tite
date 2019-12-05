@@ -2,15 +2,7 @@ import re
 import json
 from sys import argv
 
-def capture(k,v):
-    return f'(P?<{k}>{v})'
-
-delims = r'[\s,]'
-
-#symbols
-word = r'\w+'
-enum = r'\<.+\>'
-struct = r'\[.+\]'
+delims = r'[\s,\]]'
 
 #literals
 tupl = r'\(.*\)'
@@ -18,16 +10,23 @@ impl = r'\{.*\}'
 string = '".*"'
 number = r'\d+'
 
-datatype = f'{word}|{enum}|{struct}'
-signiture = f'(?:{tupl})?(?:{datatype})?'
+#symbols
+word = r'\w+'
+enum = r'\<.*\>'
+struct = r'\[.*\]'
+# for post-parsing /lazy parsing
+datatype = f'(?:{word}|{enum}|{struct})'
+signiture = f'(?:{tupl}){datatype}?'
+value = '(?P<value>.+)'
 
-var_pattern = f'(?P<name>{word}):(?P<type>(?:{tupl})?(?:{datatype}))=?(?P<value>.*)'
-def_pattern = f'(?P<name>{word})?(?P<param>{tupl})(?P<return>{datatype}|)?=(?P<value>.*)'
-#유지보수가 거의 불가능한 코드네
-pattern = capture('name',word) + '(:?)' + capture('type',signiture)+ '(?:{delims}|=(.+))'
+box_pattern = f'(?P<name>{word}):(?P<type>{signiture}|{datatype}){delims}'
+var_pattern = f'(?P<name>{word}):(?P<type>(?:{tupl})?{datatype}?)(?:{delims}|={value})'
+def_pattern = f'(?P<name>{word}|)(?P<type>{signiture})={value}'
+# is function name necessary?
 
-var_parser = re.compile(var_pattern)
-def_parser = re.compile(def_pattern)
+pattern = var_pattern
+print(pattern)
+
 parser = re.compile(pattern)
 
 if(len(argv) == 2):
@@ -39,29 +38,12 @@ source = open(src, mode='r')
 code = source.readlines()
 code = ''.join(code)
 
-# variables = var_parser.findall(code)
-# functions = def_parser.findall(code)
+it = parser.finditer(code)
 
 result = []
 
-it = var_parser.finditer(code)
-
-for i, data in enumerate(it):
-    result.append({
-        'name': data['name'],
-        'type': data['type'],
-        'type': data['value']
-    })
-
-it = def_parser.finditer(code)
-
-for i, data in enumerate(it):
-    result.append({
-        'name': data['name'],
-        'type': data['param'],
-        'type': data['return'],
-        'type': data['value']
-    })
+for data in it:
+    result.append(data.groupdict())
 
 with open('result.json', 'w', encoding='utf-8') as output:
     json.dump(result, output, indent="\t")

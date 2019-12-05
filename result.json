@@ -1,0 +1,62 @@
+[
+	{
+		"name": "a",
+		"type": "",
+		"value": "10"
+	},
+	{
+		"name": "a",
+		"type": "int",
+		"value": null
+	},
+	{
+		"name": "b",
+		"type": "int",
+		"value": "10"
+	},
+	{
+		"name": "hello",
+		"type": "str",
+		"value": "\"world\""
+	},
+	{
+		"name": "main",
+		"type": "(void)",
+		"value": null
+	},
+	{
+		"name": "func",
+		"type": "()",
+		"value": null
+	},
+	{
+		"name": "hello",
+		"type": "[x:str]",
+		"value": "\"world\""
+	},
+	{
+		"name": "bool",
+		"type": "<>",
+		"value": "1"
+	},
+	{
+		"name": "x",
+		"type": "int",
+		"value": null
+	},
+	{
+		"name": "y",
+		"type": "int",
+		"value": null
+	},
+	{
+		"name": "hello",
+		"type": "str",
+		"value": "\"world\""
+	},
+	{
+		"name": "hello",
+		"type": "[str]",
+		"value": "\"world\""
+	}
+]
