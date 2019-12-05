@@ -2,6 +2,11 @@ import re
 import json
 from sys import argv
 
+def capture(k,v):
+    return f'(P?<{k}>{v})'
+
+delims = r'[\s,]'
+
 #symbols
 word = r'\w+'
 enum = r'\<.+\>'
@@ -14,13 +19,16 @@ string = '".*"'
 number = r'\d+'
 
 datatype = f'{word}|{enum}|{struct}'
-signiture = f'(?P<param>{tupl})(?P<return>{datatype})?'
+signiture = f'(?:{tupl})?(?:{datatype})?'
 
-var_pattern = f'(?P<name>{word}):(?P<type>{datatype}|{signiture})'
-def_pattern = f'(?P<name>{word})?(?P<type>{signiture})=(?P<value>.*)'
+var_pattern = f'(?P<name>{word}):(?P<type>(?:{tupl})?(?:{datatype}))=?(?P<value>.*)'
+def_pattern = f'(?P<name>{word})?(?P<param>{tupl})(?P<return>{datatype}|)?=(?P<value>.*)'
+#유지보수가 거의 불가능한 코드네
+pattern = capture('name',word) + '(:?)' + capture('type',signiture)+ '(?:{delims}|=(.+))'
 
 var_parser = re.compile(var_pattern)
 def_parser = re.compile(def_pattern)
+parser = re.compile(pattern)
 
 if(len(argv) == 2):
     src = argv[1]
@@ -40,22 +48,20 @@ it = var_parser.finditer(code)
 
 for i, data in enumerate(it):
     result.append({
-        'name': data.group('name'),
+        'name': data['name'],
         'type': data['type'],
-        'input': data.group('param'),
-        'output': data.group('return'),
+        'type': data['value']
     })
 
 it = def_parser.finditer(code)
 
 for i, data in enumerate(it):
-    kv = {}
-    kv['name'] = data.group('name')
-    kv['type'] = data.group('type')
-    kv['input'] = data['param']
-    kv['output'] = data['return']
-    kv['value'] = data['value']
-    result.append(kv)
+    result.append({
+        'name': data['name'],
+        'type': data['param'],
+        'type': data['return'],
+        'type': data['value']
+    })
 
 with open('result.json', 'w', encoding='utf-8') as output:
     json.dump(result, output, indent="\t")
