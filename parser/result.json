@@ -1,0 +1,122 @@
+[
+	{
+		"name": "a",
+		"type": "",
+		"value": null
+	},
+	{
+		"name": "a",
+		"type": "",
+		"value": "10"
+	},
+	{
+		"name": "a",
+		"type": "int",
+		"value": null
+	},
+	{
+		"name": "b",
+		"type": "int",
+		"value": "10"
+	},
+	{
+		"name": "hello",
+		"type": "str",
+		"value": "\"world\""
+	},
+	{
+		"name": "main",
+		"type": "(void)",
+		"value": null
+	},
+	{
+		"name": "func",
+		"type": "()",
+		"value": null
+	},
+	{
+		"name": "hello",
+		"type": "[x:str]",
+		"value": "\"world\""
+	},
+	{
+		"name": "hello",
+		"type": "[x:str, y:int]",
+		"value": "\"world\""
+	},
+	{
+		"name": "a",
+		"type": "int",
+		"value": null
+	},
+	{
+		"name": "b",
+		"type": "int",
+		"value": null
+	},
+	{
+		"name": "a",
+		"type": "int",
+		"value": "2,b:int=1,f:()={})[a:int,b:int,c:()]={}"
+	},
+	{
+		"name": "min",
+		"type": "(a:int,b:int)",
+		"value": null
+	},
+	{
+		"name": "bool",
+		"type": "<>",
+		"value": "1"
+	},
+	{
+		"name": "x",
+		"type": "int",
+		"value": null
+	},
+	{
+		"name": "y",
+		"type": "int",
+		"value": null
+	},
+	{
+		"name": "hello",
+		"type": "str",
+		"value": "\"world\""
+	},
+	{
+		"name": "hello",
+		"type": "[str]",
+		"value": "\"world\""
+	},
+	{
+		"name": "a",
+		"type": "int",
+		"value": "2,b:int=1,f:()={})[a:int,b:int,c:()]"
+	},
+	{
+		"name": "b",
+		"type": "int",
+		"value": "1,f:()={})[a:int,b:int,c:()]"
+	},
+	{
+		"name": "f",
+		"type": "()",
+		"value": "{}"
+	},
+	{
+		"name": "a",
+		"type": "int",
+		"value": null
+	},
+	{
+		"name": "b",
+		"type": "int",
+		"value": null
+	},
+	{
+		"name": "c",
+		"type": "()",
+		"value": null
+	}
+]

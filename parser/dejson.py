@@ -2,7 +2,7 @@ import re
 import json
 from sys import argv
 
-delims = r'[\s,\]]'
+delims = r'[,\s\]\)]'
 
 #literals
 tupl = r'\(.*\)'
@@ -21,10 +21,10 @@ value = '(?P<value>.+)'
 
 box_pattern = f'(?P<name>{word}):(?P<type>{signiture}|{datatype}){delims}'
 var_pattern = f'(?P<name>{word}):(?P<type>(?:{tupl})?{datatype}?)(?:{delims}|={value})'
-def_pattern = f'(?P<name>{word}|)(?P<type>{signiture})={value}'
+def_pattern = f'(?P<name>{word})?(?P<type>{signiture})={value}'
 # is function name necessary?
 
-pattern = var_pattern
+pattern = var_pattern 
 print(pattern)
 
 parser = re.compile(pattern)
