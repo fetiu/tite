@@ -35,14 +35,16 @@ I believe you could infer it based on experience.
 What if we can generate a list just by putting `~` between two numbers?
 
 ```rust
-for i:int 1 ~ 10 {
+for i:int (1 ~ 10)
+{
 }
 ```
 
 even characters?
 
 ```rust
-for a:char 'a'~'z' {
+for a:char ('a'~'z')
+{
 }
 ```
 
