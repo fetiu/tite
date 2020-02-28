@@ -1,0 +1,19 @@
+io:stdio #다중상속 겸 인스턴스 생성 가능?
+
+main(void)=
+{
+	io.printf("hello world")
+}
+
+
+
+main(void)=
+{
+	io:stdio
+	io.printf("hello world")
+}
+
+main(void)={
+	print:stdio.printf
+	print("hello world);
+}
