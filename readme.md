@@ -1,6 +1,6 @@
-# `ㄷ`
+# `diccle`
 
-The ㄷ, pronounced **Diccle**, is a programming language inspired by [compound literals](https://en.cppreference.com/w/c/language/compound_literal) of C99.
+The Diccle is a programming language inspired by [compound literals](https://en.cppreference.com/w/c/language/compound_literal) of C99.
 
 ```rust
 :stdio
