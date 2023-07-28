@@ -10,7 +10,7 @@ main:(){
 }
 ```
 
-Diccle is a recursive acronym of "Diccle isn't C compound literal expression". 
+Diccle is a recursive acronym of "**D**iccle **i**sn't **C** **c**ompound **l**iteral **e**xpression". 
 
 At the same time, Diccle (디끌) is a southeast dialect of Digeut (ㄷ) in the Korean alphabet.
 
