@@ -1,11 +1,6 @@
 # `diccle`
 
-
-<div align="center">
-
 ![header](https://capsule-render.vercel.app/api?type=transparent&height=100&section=header&text=ﾧ&fontSize=80&fontAlignY=60&fontColor=000000)
-
-</div>
 
 The Diccle is a programming language inspired by [compound literals](https://en.cppreference.com/w/c/language/compound_literal) of C99.
 
@@ -53,9 +48,24 @@ b:int[] = {5, 5} // length inference
 c:int[2] = {5, 5}
 d:int[2] = {[0]=5, 5}
 e:int[2] = {[0]=5, [1]=5}
+
+print(a[0], a[0]) // prints out "5 5" 
 ```
 
-### unnamed struct
+### tuple
+
+```rust
+a := (5, 5)
+b := ([0]=5, [1]=5)
+c := ([0]:int=5, [1]:float=5)
+d:(int, float) = (5, 5)
+e:(int, float) = ([0]=5, [1]=5)
+
+print(a[0], a[0]) // prints out "5 5" 
+```
+
+### anonymous struct
+
 ```rust
 a := {.x:=5, .y:=5}
 b := {.x:int=5, .y:int=5}
@@ -63,26 +73,22 @@ c:{.x:int, .y:int} = {5, 5}
 d:{.x:int=0, .y:int=0} = {5, 5} // 5 overrides the default 0
 e:{.x:int, .y:int} = {.x=5, .y=5}
 f:{.x:int=0, .y:int=0} = {.x=5, .y=5}
+
+print(a.x, a.y) // prints out "5 5" 
 ```
 
 ### immutable struct
+
 ```rust
 a := (.x:=5, .y:=5)
 b := (.x:int=5, .y:int=5)
 c:(.x:int, .y:int) = (5, 5)
 e:(.x:int, .y:int) = (.x=5, .y=5)
+
+print(a.x, a.y) // prints out "5 5" 
 ```
 
-### unnamed tuple
-```rust
-a := (5, 5)
-b := ([0]=5, [1]=5)
-c := ([0]:int=5, [1]:float=5)
-d:(int, float) = (5, 5)
-e:(int, float) = ([0]=5, [1]=5)
-```
-
-### unnamed function
+### anonymous function
 
 ```rust
 (){} // empty function
@@ -110,7 +116,7 @@ e := div(5,3)
 
 ```rust
 point:{.x:int, .y:int}() // typedef
-a:point{5, 5}
+a:point{5, 5} // use like golang struct literals
 
 Point:{x:int=0, y:int=0}( // typedef with a method
     .move:(dx:int,dy:int){
@@ -122,23 +128,43 @@ b:Point{} // {0,0} by default
 b.move(5, 5)
 ```
 
-### class and access modifiers
-
-Now you might have noticed that some identifiers have a `.` in front, some don't.
-In fact, these dots act as access modifiers for encapsulation.
+### named tuple (immutable class)
 
 ```rust
-// Note no dots on x & y, but .move has it
+point:(.x:int, .y:int)()
+a:point(5, 5)
+
+Point:(x:int=0, y:int=0)( // methods shouldn't modify fields
+    .dist:(){
+        => (x**2 + y**2)**(1/2)
+    }
+)
+b:Point(3,4)
+print(b.dist()) // prints out "5"
+```
+
+### class and access modifiers
+
+You might have noticed that some identifiers have a `.` in front, but some don't.
+In fact, these dots act as access modifiers for encapsulation.
+It means `public` when dots are specified, and `private` when not specified.
+
+```rust
+// Note no dots on x & y, while .move & .dist have it
 Point:{x:int=0, y:int=0}(
     .move:(dx:int,dy:int){
         x += dx
         y += dy
+    }
+    .dist:(){
+        => (x**2 + y**2)**(1/2)
     }
 )
 a:Point{x=5,y=5} // x and y are hidden after this point
 a.x // compile error
 a.y // compile error
 a.move // valid access
+a.dist // valid access
 
 // In order to fix this, we need `.` in front of desired identifiers.
 point:{.x:int, .y:int}()
