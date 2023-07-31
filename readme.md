@@ -1,5 +1,12 @@
 # `diccle`
 
+
+<div align="center">
+
+![header](https://capsule-render.vercel.app/api?type=transparent&height=100&section=header&text=ﾧ&fontSize=80&fontAlignY=60&fontColor=000000)
+
+</div>
+
 The Diccle is a programming language inspired by [compound literals](https://en.cppreference.com/w/c/language/compound_literal) of C99.
 
 ```rust
