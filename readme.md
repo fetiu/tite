@@ -10,7 +10,7 @@ main:(){
 }
 ```
 
-Diccle is a recursive acronym for "**D**iccle **i**sn't **C** **c**ompound **l**iteral **e**xpression". 
+Diccle is a recursive acronym for "**D**iccle **i**sn't **C** **c**ompound **l**iteral **e**xpression", which reflects the [declarativeness](https://en.wikipedia.org/wiki/Declarative_programming) of the language itself.
 
 At the same time, Diccle (디끌) is a southeastern dialect of Digeut (ㄷ), the 3rd letter of the Korean alphabet.
 
@@ -172,3 +172,5 @@ b:point{.x=5, .y=5}
 b.x // valid access
 b.y // valid access
 ```
+
+*TODO: file scope access modifiers*
