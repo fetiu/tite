@@ -34,20 +34,20 @@ A few basic rules to help you understand:
 
 ```rust
 a := 5
-b:int = 5
-c:char = '5'
-d:float = 5.5
-e:string = "5"
+b: int = 5
+c: char = '5'
+d: float = 5.5
+e: string = "5"
 ```
 
 ### array
 
 ```rust
 a := {5, 5}
-b:int[] = {5, 5} // length inference
-c:int[2] = {5, 5}
-d:int[2] = {[0]=5, 5}
-e:int[2] = {[0]=5, [1]=5}
+b: []int = {5, 5} // length inference
+c: [2]int = {5, 5}
+d: [2]int = {[0]=5, 5}
+e: [2]int = {[0]=5, [1]=5}
 
 print(a[0], a[0]) // prints out "5 5" 
 ```
@@ -58,8 +58,8 @@ print(a[0], a[0]) // prints out "5 5"
 a := (5, 5)
 b := ([0]=5, [1]=5)
 c := ([0]:int=5, [1]:float=5)
-d:(int, float) = (5, 5)
-e:(int, float) = ([0]=5, [1]=5)
+d: (int, float) = (5, 5)
+e: (int, float) = ([0]=5, [1]=5)
 
 print(a[0], a[0]) // prints out "5 5" 
 ```
@@ -69,10 +69,10 @@ print(a[0], a[0]) // prints out "5 5"
 ```rust
 a := {.x:=5, .y:=5}
 b := {.x:int=5, .y:int=5}
-c:{.x:int, .y:int} = {5, 5}
-d:{.x:int=0, .y:int=0} = {5, 5} // 5 overrides the default 0
-e:{.x:int, .y:int} = {.x=5, .y=5}
-f:{.x:int=0, .y:int=0} = {.x=5, .y=5}
+c: {.x:int, .y:int} = {5, 5}
+d: {.x:int=0, .y:int=0} = {5, 5} // 5 overrides the default 0
+e: {.x:int, .y:int} = {.x=5, .y=5}
+f: {.x:int=0, .y:int=0} = {.x=5, .y=5}
 
 print(a.x, a.y) // prints out "5 5" 
 ```
@@ -82,8 +82,8 @@ print(a.x, a.y) // prints out "5 5"
 ```rust
 a := (.x:=5, .y:=5)
 b := (.x:int=5, .y:int=5)
-c:(.x:int, .y:int) = (5, 5)
-e:(.x:int, .y:int) = (.x=5, .y=5)
+c: (.x:int, .y:int) = (5, 5)
+e: (.x:int, .y:int) = (.x=5, .y=5)
 
 print(a.x, a.y) // prints out "5 5" 
 ```
