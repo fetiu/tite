@@ -5,7 +5,9 @@ The **DEVL** is a programming language and key-value data exchange format.
 This is an acronym for **D**eclarative **E**xpression **V**ector **L**anguage, which reflects the algebraic features of the language itself.
 
 ```rust
-main:()=>print("hello, world")
+main:(){
+    print("hello, world")
+}
 ```
 
 ## Key Features of DEVL
@@ -85,9 +87,9 @@ print(a.x, a.y) // prints out "5 5"
 ### anonymous function
 
 ```rust
-()=>{} // empty function, like JS arrow function
-()=>{print("hello")}
-(x:int, y:int) => x * y
+(){} // empty function literal
+(){print("hello")}
+(x:int, y:int) => x * y // like JS arrow function
 ((x:int, y:int) => x * y)() // like JS IIFE to execute
 ```
 
@@ -97,10 +99,9 @@ print(a.x, a.y) // prints out "5 5"
 mul:(a:int, b:int) => a * b
 c := mul(5, 5)
 
-div:(a:int, b:int)=>float{
+div:(a:int, b:int)float{
     d:float = a
-    // last line becomes a return of multi-line function
-    (d / b)
+    => d / b
 }
 e := div(5,3)
 ```
@@ -114,7 +115,7 @@ a: point{5, 5} // use like golang struct literals
 Point =: { // typedef with a method
     x:int=0
     y:int=0
-    .move:(dx:int,dy:int)=>{
+    .move:(dx:int,dy:int){
         x += dx
         y += dy
     }
@@ -132,9 +133,9 @@ a: point(5, 5)
 Point =: (
     x:int=0 // methods shouldn't modify fields of tuple
     y:int=0
-    .dist:()=>{
+    .dist:(){
         // using pythagoras theorem
-        (x**2 + y**2)**(1/2)
+        => (x**2 + y**2)**(1/2)
     }
 )
 b: Point(3,4)
@@ -152,12 +153,12 @@ It means `public` when dots are specified, and `private` when not specified.
 Point =: {
     x:int=0
     y:int=0
-    .move:(dx:int,dy:int)=>{
+    .move:(dx:int,dy:int){
         x += dx
         y += dy
     }
-    .dist:()=>{
-        (x**2 + y**2)**(1/2)
+    .dist:(){
+        => (x**2 + y**2)**(1/2)
     }
 }
 a: Point{x=5,y=5} // x and y are hidden after this point
