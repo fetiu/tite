@@ -1,21 +1,17 @@
-# 😈 `devl`
+# `dite`
 
-The **DEVL** is a programming language and key-value data exchange format. 
-
-This is an acronym for **D**eclarative **E**xpression **V**ector **L**anguage, which reflects the algebraic features of the language itself.
+The **Dite** is a programming language and key-value data exchange format. 
 
 ```rust
-main:(){
-    print("hello, world")
-}
+main: () => print("hello, world")
 ```
 
-## Key Features of DEVL
+## Key Features of Dite
 
 - No keywords to remember: everything is done with some special characters, yet intuitive.
 - Familiar syntax: you'd already know most parts of this language if you're a developer.
 - Multi-Paradigm: object-oriented or functional programming also was considered in syntax.
-- Performance: as fast as C. DEVL first compiles to human-readable C.
+- Performance: as fast as C. Dite first compiles to human-readable C.
 
 
 ## Examples
