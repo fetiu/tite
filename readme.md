@@ -1,17 +1,17 @@
-# `dite`
+# `tite`
 
-The **Dite** is a programming language and key-value data exchange format. 
+The **Tite** is a programming language and key-value data exchange format. 
 
 ```rust
 main: () => print("hello, world")
 ```
 
-## Key Features of Dite
+## Key Features of Tite
 
 - No keywords to remember: everything is done with some special characters, yet intuitive.
 - Familiar syntax: you'd already know most parts of this language if you're a developer.
 - Multi-Paradigm: object-oriented or functional programming also was considered in syntax.
-- Performance: as fast as C. Dite first compiles to human-readable C.
+- Performance: as fast as C. Tite first compiles to human-readable C.
 
 
 ## Examples
