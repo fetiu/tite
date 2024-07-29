@@ -38,7 +38,7 @@ e: string = "5"
 
 ```rust
 b: int[] = [5, 5] // length inference
-c: int[2] = {5, 5}
+c: int[2] = [5, 5]
 d: int[2] = [0: 5, 5]
 e: int[2] = [0: 5, 1: 5]
 
