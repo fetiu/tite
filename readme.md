@@ -2,7 +2,7 @@
 
 # Tite
 
-Tite is a new programming language designed to be concise, intuitive, and efficient.
+Tite is a programming language designed to be concise, intuitive, and efficient.
 
 `main: () => print("hello, world")`
 
@@ -81,5 +81,11 @@ dog.move() // Output: walking
 Join **Titans** (tentative), our community of Tite developers, for support, discussion, and contributions.
 
 ## Getting Started
+
+Currently, Tite is a project work in progress.
+
+You can see the parse tree of example code by running `./test.sh` from the terminal
+
+![parse tree](antlr4_parse_tree.svg)
 
 Visit [tite.dev](https://tite.dev) for detailed documentation, tutorials, and resources.

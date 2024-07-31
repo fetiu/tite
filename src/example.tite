@@ -1,0 +1,33 @@
+name := "tite"
+$counter: int = 0
+.version: string = "1.0.0"
+
+mul: (a:int, b:int) => a * b
+result := mul(5, 5)
+
+div: float(a:int, b:int) => {
+    d: float = a,
+    (d / b)
+}
+quotient := div(5, 3)
+
+#point := {
+    x: int,
+    y: int,
+    .dist: () => (((x**2) + (y**2))**(1/2))
+}
+pos: point = {3, 4}
+
+#Animal := {
+    .move: () => print("moving")
+}
+#Mammal: Animal = {
+    .walk: () => print("walking"),
+    .move: walk
+}
+dog: Mammal = {}
+
+main: () => {
+    print(pos.dist()),
+    dog.move()
+}
