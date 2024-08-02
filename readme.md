@@ -10,7 +10,7 @@ Tite is a programming language designed to be concise, intuitive, and efficient.
 
 ## Key Features
 
-- **Familiar Syntax:** Blends the familiarity of Python, Rust, and JavaScript.
+- **Familiar Syntax:** Blends the familiarity of Python, Rust, Go, and JavaScript.
 - **Zero Keywords:** Utilizes special characters for mutability, visibility, and type declarations.
 - **Multi-Paradigm:** Supports both object-oriented and functional programming.
 

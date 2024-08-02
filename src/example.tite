@@ -3,13 +3,12 @@ $counter: int = 0
 .version: string = "1.0.0"
 
 mul: (a:int, b:int) => a * b
-result := mul(5, 5)
+$result := mul(5, 5)
 
-div: float(a:int, b:int) => {
+div: (a:int, b:int) float => {
     d: float = a
     (d / b)
 }
-quotient := div(5, 3)
 
 #point := {
     x: int
@@ -28,6 +27,7 @@ pos: point = {3, 4}
 dog: Mammal = {}
 
 main: () => {
+    result = div(5, 3)
     print(pos.dist())
     dog.move()
 }
