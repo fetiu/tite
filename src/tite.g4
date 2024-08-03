@@ -2,15 +2,14 @@ grammar tite;
 
 program : declaration (delim declaration)* ;
 declaration : (tag? IDENTIFIER)? ':' (type | expression) ;
-tag : '.' | '$' | '#' ;
+tag : '.'|'$'|'#' ;
 parameter : LF? declaration (delim declaration)* LF? ;
 function : '*'? '(' parameter? ')' type? ;
-access : '.' IDENTIFIER ;
 type : condition | function ;
 
 primary : IDENTIFIER | literal | '(' expression ')' ;
-postfix : primary | postfix ('++'|'--'|'?'? access|array|argument) ; // TODO: struct unpacking
-unary : postfix | ('++'|'--'|'+'|'-'|'~'|'!'|'@') unary | '|' unary '|' ;
+postfix : primary | postfix ('++'|'--'|'.'IDENTIFIER|argument|array) ; // TODO: struct unpacking
+unary : postfix | ('++'|'--'|'+'|'-'|'~'|'!'|'@'|tag) unary | '|' unary '|' ;
 product : unary | product ('*'|'/'|'%'|'**'|'..') unary ;
 additive : product | additive ('+'|'-') product ;
 shift : additive | shift ('<<'|'>>') additive ;
@@ -22,11 +21,11 @@ or : xor | or '|' xor ;
 logic_and : or | logic_and LF? '&&' LF? or ;
 logic_or : logic_and | logic_or LF? '||' LF? logic_and ;
 condition : logic_or | logic_or '?' LF? (expression | otherwise) ;
-otherwise : expression? LF? '||' LF? condition ;
-assignment : ('='|'=>'|'*='|'/='|'%='|'+='|'-='|'<<='|'>>='|'&='|'^='|'|=') ;
+otherwise : expression? LF? ':' LF? condition ;
+assignment : '='|'=>'|'*='|'/='|'%='|'+='|'-='|'<<='|'>>='|'&='|'^='|'|=' ;
 expression : condition | type? assignment LF? expression ;
 
-element : (declaration | expression) ;
+element : declaration | expression ;
 sequence : LF? element (delim element)* LF? ;
 argument : '(' sequence? ')' ;
 structure : '{' sequence? '}' ;

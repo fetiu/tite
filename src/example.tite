@@ -13,7 +13,7 @@ div: (a:int, b:int) float => {
 #point := {
     x: int
     y: int
-    .dist: () => (((x**2) + (y**2))**(1/2))
+    .dist: () => (x**2 + y**2)**(1/2)
 }
 pos: point = {3, 4}
 
@@ -22,7 +22,7 @@ pos: point = {3, 4}
 }
 #Mammal: Animal = {
     .walk: () => print("walking")
-    .move: walk
+    .move = walk
 }
 dog: Mammal = {}
 

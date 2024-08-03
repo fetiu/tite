@@ -30,7 +30,7 @@ Programming languages often become more complex with the addition of new feature
 ### Variable Declaration
 
 ```rust
-language := "Tite" // Optional type
+language := "Tite" // Type inference
 $counter: int = 0 // Mutable binding
 .version: string = "1.0.0" // Public visibility
 ```
@@ -41,7 +41,7 @@ $counter: int = 0 // Mutable binding
 mul: (a:int, b:int) => a * b
 $result := mul(5, 5)
 
-div: float(a:int, b:int) => {
+div: (a:int, b:int) float => {
     d: float = a
     (d / b) // Return value
 }
@@ -69,7 +69,7 @@ print(pos.dist()) // Output: 5
 
 #Mammal: Animal = {
     .walk: () => print("walking")
-    .move: walk // Override move with walk
+    .move = walk // Override move with walk
 }
 
 dog: Mammal = {}
