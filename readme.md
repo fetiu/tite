@@ -16,7 +16,7 @@ Tite is a programming language designed to be concise, intuitive, and efficient.
 
 ## Philosophy
 
-Tite aims to provide a strict and concise coding environment, allowing developers to write clear and efficient code without the burden of numerous keywords with subtle distinctions. 
+Tite aims to provide a strict and concise coding environment, allowing developers to write clear and efficient code without being overwhelmed by numerous keywords.
 
 There are only a few basic rules in Tite:
 

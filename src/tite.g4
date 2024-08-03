@@ -1,41 +1,43 @@
 grammar tite;
 
 program : declaration (delim declaration)* ;
-declaration : (tag? IDENTIFIER)? ':' (type | expression) ;
-tag : '.'|'$'|'#' ;
+identifiers : primary (',' primary)* ;
+declaration : identifiers? ':' (type | expression) ;
 parameter : LF? declaration (delim declaration)* LF? ;
-function : '*'? '(' parameter? ')' type? ;
+function : '(' parameter? ')' type? ;
 type : condition | function ;
+tag : '.' | '$' | '#' | '@' ;
 
-primary : IDENTIFIER | literal | '(' expression ')' ;
-postfix : primary | postfix ('++'|'--'|'.'IDENTIFIER|argument|array) ; // TODO: struct unpacking
-unary : postfix | ('++'|'--'|'+'|'-'|'~'|'!'|'@'|tag) unary | '|' unary '|' ;
-product : unary | product ('*'|'/'|'%'|'**'|'..') unary ;
-additive : product | additive ('+'|'-') product ;
+primary : tag? IDENTIFIER | literal | '(' expression ')' ;
+postfix : primary | postfix ('++'|'--'|'.'IDENTIFIER|argument|array) ;
+power : postfix | postfix '**' factor ;
+factor : power | ('++'|'--'|'+'|'-'|'~'|'!') factor | '|' factor '|' ;
+product : factor | product ('*'|'/'|'%'|'//') factor ;
+additive : product | additive ('+'|'-'|'..') product ;
 shift : additive | shift ('<<'|'>>') additive ;
 relation : shift | relation ('<'|'>'|'<='|'>=') shift ;
 equality : relation | equality ('=='|'!='|'==='|'!==') relation ;
 and : equality | and '&' equality ;
 xor : and | xor '^' and ;
 or : xor | or '|' xor ;
-logic_and : or | logic_and LF? '&&' LF? or ;
-logic_or : logic_and | logic_or LF? '||' LF? logic_and ;
-condition : logic_or | logic_or '?' LF? (expression | otherwise) ;
-otherwise : expression? LF? ':' LF? condition ;
-assignment : '='|'=>'|'*='|'/='|'%='|'+='|'-='|'<<='|'>>='|'&='|'^='|'|=' ;
-expression : condition | type? assignment LF? expression ;
+conjunction : or | conjunction LF? '&&' LF? or ;
+disjunction : conjunction | disjunction LF? '||' LF? conjunction ;
+condition : disjunction | disjunction '?' (expression | otherwise) ;
+otherwise : expression? ':' condition ;
+assignment : '='|'=>'|'<-'|'*='|'/='|'%='|'//='|'**='|'+='|'-='|'<<='|'>>='|'&='|'^='|'|=' ;
+expression : '*'? (condition | type? assignment LF? expression) ;
 
 element : declaration | expression ;
 sequence : LF? element (delim element)* LF? ;
+compound : '{' sequence? '}' ;
 argument : '(' sequence? ')' ;
-structure : '{' sequence? '}' ;
 array : '[' sequence? ']' ; // TODO: should limit to literal key & value?
-literal : INT | FLOAT | CHAR | STRING | structure | array ;
+literal : INT | FLOAT | CHAR | STR | compound | array ;
 delim: (LF | ',') LF? ;
 IDENTIFIER : [a-zA-Z_][a-zA-Z_0-9]* ;
-INT : [0-9]+ ;
+INT : [0-9]+ | '0x'[0-9a-fA-F]+ | ('0'|'0o')[0-7]+ | '0b'[01]+ ;
 FLOAT : [0-9]+ '.' [0-9]* ;
 CHAR : '\'' . '\'' ;
-STRING : '"' .*? '"' ;
+STR : '"' .*? '"' | '"""' LF? .*? (LF .*?)* '"""' | '`' .*? '`' ; // TODO: format string
 WS : [ ;\t]+ -> skip ;
 LF : [\r\n]+ ;

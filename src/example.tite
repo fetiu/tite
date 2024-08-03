@@ -1,6 +1,8 @@
 name := "tite"
 $counter: int = 0
-.version: string = "1.0.0"
+.version: str = """
+Tite v0.1.0
+"""
 
 mul: (a:int, b:int) => a * b
 $result := mul(5, 5)
@@ -29,5 +31,17 @@ dog: Mammal = {}
 main: () => {
     result = div(5, 3)
     print(pos.dist())
-    dog.move()
+    dog?.move()
+
+    a,b,c := {0x1F, 0o7, 03}
+    $c,$d,$e := [0b00: a, 0b01: b, 0b10: c]
+    a? {
+        true
+    } : b? {
+        false
+    } : {
+        null
+    }
+
+    @stdio.puts("hello, world")
 }
