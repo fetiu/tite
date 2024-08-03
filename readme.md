@@ -78,7 +78,7 @@ dog.move() // Output: walking
 
 ## Community
 
-Join **Titans** (tentative), our community of Tite developers, for support, discussion, and contributions.
+Join [Titers](https://titers.slack.com), our community of Tite developers, for support, discussion, and contributions.
 
 ## Getting Started
 
