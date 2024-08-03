@@ -29,19 +29,17 @@ pos: point = {3, 4}
 dog: Mammal = {}
 
 main: () => {
-    result = div(5, 3)
-    print(pos.dist())
-    dog?.move()
-
-    a,b,c := {0x1F, 0o7, 03}
-    $c,$d,$e := [0b00: a, 0b01: b, 0b10: c]
-    a? {
-        true
-    } : b? {
-        false
-    } : {
-        null
-    }
-
     @stdio.puts("hello, world")
+
+    a,b,c := {0x1F, 0o7, 032}
+
+    a? {
+        result = div(5, 3)
+    } : b? {
+        print(pos.dist())
+    } : c? {
+        dog?.move()
+    } : {
+        $d,$e,$f := [0b00: a, 0b01: b, 0b10: c]
+    }
 }
