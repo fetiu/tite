@@ -3,13 +3,13 @@ grammar tite;
 program : declaration (delim declaration)* ;
 identifiers : primary (',' primary)* ;
 declaration : identifiers? ':' (type | expression) ;
-parameter : LF? declaration (delim declaration)* LF? ;
-function : '(' parameter? ')' type? ;
+parameter : declaration (delim declaration)* ;
+function : '(' LF? parameter? LF? ')' type? ;
 type : condition | function ;
 tag : '.' | '$' | '#' | '@' ;
 
 primary : tag? IDENTIFIER | literal | '(' expression ')' ;
-postfix : primary | postfix ('++'|'--'|'.'IDENTIFIER|argument|array) ;
+postfix : primary | postfix ('++'|'--'|'.'IDENTIFIER|argument|brackets) ;
 power : postfix | postfix '**' factor ;
 factor : power | ('++'|'--'|'+'|'-'|'~'|'!') factor | '|' factor '|' ;
 product : factor | product ('*'|'/'|'%'|'//') factor ;
@@ -28,11 +28,11 @@ assignment : '='|'=>'|'<-'|'*='|'/='|'%='|'//='|'**='|'+='|'-='|'<<='|'>>='|'&='
 expression : '*'? (condition | type? assignment LF? expression) ;
 
 element : declaration | expression ;
-sequence : LF? element (delim element)* LF? ;
-compound : '{' sequence? '}' ;
-argument : '(' sequence? ')' ;
-array : '[' sequence? ']' ; // TODO: should limit to literal key & value?
-literal : INT | FLOAT | CHAR | STR | compound | array ;
+sequence : element (delim element)* ;
+compound : '{' LF? sequence? LF? '}' ;
+argument : '(' LF? sequence? LF? ')' ;
+brackets : '[' LF? sequence? LF? ']' ; // TODO: should limit to literal key & value?
+literal : INT | FLOAT | CHAR | STR | compound | brackets ;
 delim: (LF | ',') LF? ;
 IDENTIFIER : [a-zA-Z_][a-zA-Z_0-9]* ;
 INT : [0-9]+ | '0x'[0-9a-fA-F]+ | ('0'|'0o')[0-7]+ | '0b'[01]+ ;
