@@ -2,11 +2,11 @@ grammar tite;
 
 program : declaration (delim declaration)* ;
 identifiers : primary (',' primary)* ;
-declaration : identifiers? ':' (type | expression) ;
+declaration : (identifiers ':'| identifiers? '@') (type | expression) ;
 parameter : declaration (delim declaration)* ;
 function : '(' LF? parameter? LF? ')' type? ;
 type : condition | function ;
-tag : '.' | '$' | '#' | '@' ;
+tag : '.' | '$' | '#' ;
 
 primary : tag? IDENTIFIER | literal | '(' expression ')' ;
 postfix : primary | postfix ('++'|'--'|'.'IDENTIFIER|argument|brackets) ;
