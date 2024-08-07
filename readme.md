@@ -32,7 +32,7 @@ Programming languages often become more complex with the addition of new feature
 ```rust
 language := "Tite" // Type inference
 $counter: int = 0 // Mutable binding
-.version: string = "1.0.0" // Public visibility
+.version: str = "1.0.0" // Public visibility
 ```
 
 ### Function Declaration
