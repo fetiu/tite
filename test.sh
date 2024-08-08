@@ -5,4 +5,4 @@ if ! which antlr4-parse > /dev/null; then
 fi
 
 cd src
-antlr4-parse tite.g4 program -gui "example.tite"
+antlr4-parse parser/tite.g4 program -gui "example.tite"
