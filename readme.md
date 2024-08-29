@@ -69,7 +69,7 @@ print(pos.dist()) // Output: 5
 
 #Mammal: Animal = {
     .walk: () => print("walking")
-    .move = walk // Override move with walk
+    .move := walk // Override move with walk
 }
 
 dog: Mammal = {}
