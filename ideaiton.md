@@ -2,7 +2,7 @@
 
 ## Types and (const) variables
 
-```python
+```ts
 int: {-2147483648 ... 2147483647}
 
 a: 1
@@ -31,7 +31,7 @@ p: point{x:0, y:0}
 
 ## Functions and methods
 
-```python
+```ts
 f: (s: string) => console.log(s)
 f: string => console.log(string)
 // let unnamed parameter can be referred if it's unique in the context
@@ -43,16 +43,16 @@ As a consequence, we can now derive a principle to disallow reassign to paramete
 
 Only the stack variables may be modified (tentative: or the mutator called from declared context)
 
-```python
+```ts
 Person:{
-  name: string
+  name: string,
   setName:(string){
     name = string
   }
 }
 
 main:(){
-  p: Person
+  p: Person // init like `p: Person = {name:"John"}` VS. ctor like `p: Person{name:"John"}`
   p.setName("Jake") // allowed
   changeName(p) // error, implicitly changes parameter
   p = mutateName(p)
@@ -75,13 +75,16 @@ mutateName:(p: Person) Person {
 
 ## Enums
 
-```python
+```ts
 cardsuit: {spades, diamonds, hearts, clubs}
 cardsuit: {spades | diamonds | hearts | clubs} // how do we designate the value of identifier
+cardsuit: {spades diamonds hearts clubs} // in case the empty space or linefeed implies union
+
 cardsuit: {spades:0, diamonds:1, hearts:2, clubs:3}  // how can we tell whether member or element
 cardsuit: {spades:0 | diamonds:1 | hearts:2 | clubs:3} // how can we tell if "0|x" isn't union type -> maybe we can just consider "|" as a chainable operator (like "?"), which has lower priority than ":". So that means ":" also becomes a operator that can be resolved very early stage (but not higher than =, since it's not an "operator"... or just = becomes the highest operator).
-// how do we define a nesting type for enums?
+cardsuit: {spades:0 diamonds:1 hearts:2 clubs:3} // if comma is not used, we can say it's union (like procedures)
 
+// how do we define a nesting type for enums?
 cardsuit: uint8_t & {spades:0 | diamonds:1 | hearts:2 | clubs:3} 
 cardsuit: uint8_t = {spades:0 | diamonds:1 | hearts:2 | clubs:3} // or a direct realization?
 cardsuit:= {spades:0 | diamonds:1 | hearts:2 | clubs:3} // in that case, type inference?
@@ -96,7 +99,7 @@ c: cardsuit=0
 
 ## Operator priority
 
-```python
+```ts
 a?: 1
 
 a? asdf | b? fdsa
