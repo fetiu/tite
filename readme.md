@@ -84,7 +84,9 @@ Join [Titers](https://titers.slack.com), our community of Tite developers, for s
 
 Currently, Tite is a project work in progress.
 
-You can see the parse tree of example code by running `./test.sh` from the terminal
+You can see the parse tree of the example code by running `./test.sh` from the terminal.
+The script builds and runs the new Pest-based Rust parser to pretty-print the
+syntax tree for `src/example.tite`.
 
 ![parse tree](antlr4_parse_tree.svg)
 
