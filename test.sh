@@ -1,8 +1,11 @@
 #!/bin/bash
 
-if ! which antlr4-parse > /dev/null; then
-    pip install antlr4-tools
+set -euo pipefail
+
+if ! command -v cargo > /dev/null; then
+    echo "cargo is required to run the Pest parser demo" >&2
+    exit 1
 fi
 
-cd src
-antlr4-parse parser/tite.g4 program -gui "example.tite"
+cargo run --manifest-path pest_parser/Cargo.toml --bin print_tree --quiet src/example.tite
+
