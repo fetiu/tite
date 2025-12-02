@@ -1,0 +1,29 @@
+a: int = 1
+
+f: () => () => 1
+
+<>[]()
+<>()[]
+<>[]int
+<>[]int() // invalid
+<>[]()int // array of functions
+<>()int[] // invalid
+<>()[]int // function returns array
+
+<>[]map<> // valid
+<>()map<> // valid
+
+<>[]()map<> // array of functions returns map
+<>()[]map<> // function returns array of map
+
+[]<>() // array of template function?
+
+f:(){
+    // declarative body
+}
+
+// but this should be called... twice? no
+f() // does it return body right away?
+
+f:()1 // this is also possible.
+f() // returns constant 1.

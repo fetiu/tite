@@ -1,0 +1,16 @@
+
+program = bindings
+bindings = binding (, binding)*
+binding = identifier ':' expression
+expression = generic? type ('=' literal)?
+
+array = '[' bindings? ']'
+params = '(' bindings? ')'
+object = '{' bindings? '}'
+generic = '<' bindings? '>'
+type = (params | array) type | typename | data
+typename = identifier generic?
+
+data = INT | FLOAT | CHAR | STR | array | object
+code = '>' (expression | object)
+literal = (data | code)
