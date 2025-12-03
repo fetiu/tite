@@ -1,6 +1,22 @@
 a: int = 1
 
-f: () => () => 1
+f: () => () => 1 // valid. but for simplicity, see next
+f: ()()int =>> 1 // somewhat differnt from ts, but concise
+// Or we have to put "literal" to code rule, but this makes:
+f: ()()int => () => 1
+// hmm not bad?
+f: <T>()()T => <T>()=>T
+// the main problem is that code may provide "type" without value,
+// this may cause semantic problems... but "=>>" feels too jargony.
+// our goal is make this familar to JS devs as much as possible.
+// there is no choice but to provide literal here. the end.
+// to make '>' always come with '=', let's put "literal" here.
+
+// generic is something that only be a type, not the value.
+// so we'd better not provide literal to union.
+// but maybe.. 
+
+// type should contain names that 
 
 <>[]()
 <>()[]
@@ -27,3 +43,12 @@ f() // does it return body right away?
 
 f:()1 // this is also possible.
 f() // returns constant 1.
+
+https://go.dev/ref/spec#Identifiers which format does it use
+http://go.dev/ref/spec#Notation variant of EBNF, wirth syntax notation
+python also uses mixture of EBNF and PEG:
+https://docs.python.org/3/reference/introduction.html#notation
+https://docs.python.org/3/reference/grammar.html
+// we might can create a parser that makes AST based on this.
+https://daobook.github.io/devguide/grammar.html
+https://github.com/python/cpython/blob/3.14/Grammar/python.gram

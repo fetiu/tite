@@ -1,16 +1,18 @@
+# PEG + EBNF grammar: https://docs.python.org/3/reference/introduction.html#notation
 
-program = bindings
-bindings = binding (, binding)*
-binding = identifier ':' expression
-expression = generic? type ('=' literal)?
-
-array = '[' bindings? ']'
-params = '(' bindings? ')'
-object = '{' bindings? '}'
-generic = '<' bindings? '>'
-type = (params | array) type | typename | data
-typename = identifier generic?
-
-data = INT | FLOAT | CHAR | STR | array | object
-code = '>' (expression | object)
-literal = (data | code)
+program = expressions
+expressions = expression (',' expression)*
+expression = literal | binding
+binding = name ':' literal
+literal = generic? type ['=' value]
+value = data | code
+code = '>' literal
+data = INT | FLOAT | CHAR | STR | object
+type = data | union | (array | params) type?
+generic = '<' expressions? '>'
+object = '{' expressions? '}'
+params = '(' expressions? ')'
+array = '[' expressions? ']'
+union: name ('|' name)*
+name: '.'? identifier | data
+postfix = identifier generic?
