@@ -52,3 +52,34 @@ https://docs.python.org/3/reference/grammar.html
 // we might can create a parser that makes AST based on this.
 https://daobook.github.io/devguide/grammar.html
 https://github.com/python/cpython/blob/3.14/Grammar/python.gram
+
+// if we allow key to have conditionals, it's hard to decipher
+a? 1 : 1 : string ? 1 : 1 = true ? "hello" : hello
+// but, can't we filter this from semantic analysis?
+// for the sake of grammar simplicity.
+// so, allow only "primary" and rules below for the first literal
+// unless "expression" is used from conditionals (option) above
+// because the first operand also should support entire "literal"
+
+// optional type should be realizable with one of this:
+half: (x: f32) f64? null => x/2 
+half: (x: f32) f64 ?? null => x/2
+half: (x: f32) f64 | null => {
+    ret: f64 = x/2
+    ret == NaN ? null : ret
+}
+
+// should we use brand new name like question?
+// rather than using long conditional,
+// or using confusing optional or condition,
+// let's call them an "option"
+
+// can a generic operator come later than array indicing?
+// can a function be called like `a[0]<string>()`?
+const a = [<T>() => {}]
+// TS defined it as it must be type annotated before such a thing
+const a = <T>() => T = [<T>() => {return "hello" as unknown as T;}]
+a[0]();
+// but it was not valid from the first place. the correct way was
+const a = <T>(param: T): T => "hello" as unknown as T;
+const a: <T>(param: T): T = ()=>{} // also works in TS, kinda dirty
