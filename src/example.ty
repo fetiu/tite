@@ -1,0 +1,106 @@
+
+name : "tite"
+{ counter: int = 0 }
+.version: str = "1.0.0"
+
+mul: (a:int, b:int) => a * b
+result: mul(5, 5) // 
+
+div: (a:int, b:int) float => {
+    d: float = a
+    (d / b)
+}
+result = div(a: 5, b: 3)
+
+point : {
+    x: int
+    y: int
+    dist: () => (x**2 + y**2)**(1/2)
+}
+pos: point = {x:3, y:4}
+print(pos.dist())
+
+Animal : {
+    move: () => print("moving")
+}
+Mammal: Animal = {
+    .walk: () => print("walking")
+    move = .walk
+}
+Dog: Mammal = {}
+
+IsString: <T> T <: string ? "Yes, it's a string" : "No, it's not a string"
+A: IsString<"hello">
+B: IsString<123>
+
+cardsuit : int = {spade, diamond, heart, clover}
+
+main: () => {
+    print("hello, world")
+
+    (a,b,c) := [0x1F, 0o7, 032]
+
+    F: <A, B> = A | B
+
+    hand : cardsuit = spade
+
+    a? {
+        x := """
+        Tite v1.0.0
+        """
+    } : b? {
+        y: 
+        []int =
+        [
+            1, 2, 3
+            4, 5, 6
+        ]
+    }
+    : c? {
+        dog?.move()
+    } :
+    {
+        d,e,f : [0b00: a, 0b01: b, 0b10: c]
+    }
+
+    2 + 3
+    2
+    +3
+    2
+    +
+    3
+
+    result :
+        = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+               .filter(n => n % 2 === 0)
+               .map(a => a * 10)
+               .reduce((a, b) => a + b, 0)
+
+
+    f: () => () => 1
+
+    * (i: 0..10 += 2) => {
+        print(i)
+    }
+
+    a...b
+    ...b
+
+    a?: int = 1
+    a?: {
+        print("hello")
+    }
+    
+    a: A | B | C<T> = 1
+    a: A<T>.B = 1
+    a: A<T>[] = 1
+    a: A<T>() = 1
+
+    a || b ? data : literal
+    a || b ? {
+    } : boolean ? {
+    }
+    
+    toString: <isTrue> isTrue ? "true" : "false"
+    b: toString<true>
+}

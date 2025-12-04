@@ -1,0 +1,43 @@
+grammar tyfn;
+
+program     : expressions EOF ;
+expressions : expression (delim expression)* ;
+expression  : binding | literal ;
+binding     : key (':' | '?:') LF? literal ;
+literal     : generic? type ('=' value)? ;
+key         : ('.' | '...')? IDENTIFIER | data ;
+data        : INT | FLOAT | CHAR | STR | object ;
+type        : condition | (array | tuple) type? ;
+value       : condition | code ;
+generic     : '<' LF? expressions? LF? '>' ;
+object      : '{' LF? expressions? LF? '}' ;
+array       : '[' LF? expressions? LF? ']' ;
+tuple       : '(' LF? expressions? LF? ')' ;
+code        : '>' LF? literal ;
+member      : LF? '.' call ;
+condition   : or (LF? '?' LF?  (member | expression))? ;
+or          : and (LF? ('||' | '??') LF? and)* ;
+and         : union (LF? '&&' LF? union)* ;
+union       : xor (LF? '|' LF? xor)* ;
+xor         : intersect (LF? '^' LF? intersect)* ;
+intersect   : equality (LF? '&' LF? equality)* ;
+equality    : relation (LF? ('==' | '!=' | '===' | '!==') LF? relation)* ;
+relation    : range (LF? ('<' | '>' | '<=' | '>=' | '<:') LF? range)* ;
+range       : [ shift ] LF? ('..' | '..=') LF? [ shift ] ;
+shift       : additive (LF? ('<<' | '>>' | '>>>') LF? additive)* ;
+additive    : multiply (LF? ('+' | '-') LF? multiply)* ;
+multiply    : power (LF? ('*' | '/' | '%') LF? power)* ;
+power       : prefix (LF? '**' LF? prefix)* ;
+prefix      : suffix | ('++' | '--' | '+' | '-' | '~' | '!') LF? prefix ;
+suffix      : call ('++' | '--')? ;
+call        : primary (member | array | tuple)* ;
+primary     : key generic? | tuple ;
+
+delim: (LF | ',') LF? ;
+IDENTIFIER : [a-zA-Z_][a-zA-Z_0-9]* ;
+INT : [0-9]+ | '0x'[0-9a-fA-F]+ | ('0' | '0o')[0-7]+ | '0b'[01]+ ;
+FLOAT : [0-9]* '.' [0-9]+ ;
+CHAR : '\'' . '\'' ;
+STR : '"' .*? '"' | '"""' LF? .*? (LF .*?)* '"""' | '`' .*? '`' ; // TODO: format string
+WS : [ ;\t]+ -> skip ;
+LF : [\r\n]+ ;

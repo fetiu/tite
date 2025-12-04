@@ -1,18 +1,32 @@
-# PEG + EBNF grammar: https://docs.python.org/3/reference/introduction.html#notation
-
-program = expressions
-expressions = expression (',' expression)*
-expression = literal | binding
-binding = name ':' literal
-literal = generic? type ['=' value]
-value = data | code
-code = '>' literal
-data = INT | FLOAT | CHAR | STR | object
-type = data | union | (array | params) type?
-generic = '<' expressions? '>'
-object = '{' expressions? '}'
-params = '(' expressions? ')'
-array = '[' expressions? ']'
-union: name ('|' name)*
-name: '.'? identifier | data
-postfix = identifier generic?
+program = expressions ;
+expressions = expression { ',' expression } ;
+expression = binding | literal ;
+binding = key ( ':' | '?:' ) literal ;
+literal = [ generic ] type [ '=' value ] ;
+key = [ '.' | '...' ] identifier | data ;
+data = int | float | char | str | object ;
+type = condition | ( array | tuple ) [ type ] ;
+value = condition | code ;
+generic = '<' [ expressions ] '>' ;
+object = '{' [ expressions ] '}' ;
+array = '[' [ expressions ] ']' ;
+tuple = '(' [ expressions ] ')' ;
+code = '>' literal ;
+member = '.' call ;
+condition = or [ '?' ( member | expression ) ] ;
+or = and { ( '||' | '??' ) and } ;
+and = union { '&&' union } ;
+union = xor { '|' xor } ;
+xor = intersect { '^' intersect } ;
+intersect = equality { '&' equality } ;
+equality = relation { ( '==' | '!=' | '===' | '!==' ) relation } ;
+relation = range { ( '<' | '>' | '<=' | '>=' | '<:' ) range } ;
+range = [ shift ] ('..' | '..=') [ shift ] ;
+shift = additive { ( '<<' | '>>' | '>>>' ) additive } ;
+additive = multiply { ( '+' | '-' ) multiply } ;
+multiply = power { ( '*' | '/' | '%' ) power } ;
+power = prefix { '**' prefix } ;
+prefix = suffix | ( '++' | '--' | '+' | '-' | '~' | '!' ) prefix ;
+suffix = call [ '++' | '--' ] ;
+call = primary { member | array | tuple } ;
+primary = key [ generic ] | tuple ;
