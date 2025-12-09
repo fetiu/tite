@@ -118,3 +118,5 @@ const a: <T>(param: T): T = ()=>{} // also works in TS, kinda dirty
 // mapping, application, projection, and lookup (or access)
 // but lookup implies retrieving an existing value from DS using a key.
 // so mapping should be the best one, unambiguous term to describe this.
+
+we will call a primary (or identifier) as "term", based on type theory.
