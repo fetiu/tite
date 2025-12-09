@@ -58,7 +58,7 @@ a? 1 : 1 : string ? 1 : 1 = true ? "hello" : hello
 // but, can't we filter this from semantic analysis?
 // for the sake of grammar simplicity.
 // so, allow only "primary" and rules below for the first literal
-// unless "expression" is used from conditionals (option) above
+// unless "expression" is used from conditionals above
 // because the first operand also should support entire "literal"
 
 // optional type should be realizable with one of this:
@@ -69,10 +69,40 @@ half: (x: f32) f64 | null => {
     ret == NaN ? null : ret
 }
 
+// remember, there are two types of '?'
+// one should be evaluated as whole expr "a?b:c",
+// the other should be evaluated as unary "a?"
+// the latter needs to be used for "?." or "?:"
+// but as a side effect, it enables things like:
+f64? // functions as rust `Option<f64>`
+cond? ? expr // nullish coalcasing operator
+// this approach aligns with additive/prefix +/-
+
+a[0]?.member // should be valid
+a<T>?.member // should be valid
+a(p)?.member // should be valid
+c?: literal // we might have to allow posfix on key
+c ? literal : literal
+isTrue()?.member
+isTrue()?: invalid
+// why not primary -> weird non-member access
+a?[0] // invalid
+a?<T> // invalid
+a?(a) // invalid
+// why not postfix -> couldn't do member access
+// although member access looks like binary ops
+// it doesn't have to be conditional expression
+// instead, we can achieve with recursive "call"
+
+call? ? literal // how do we distinguish it from '??'
+// or maybe we just can.. removing '??' operator...
+call?? literal : literal
+// - [ ] ?? makes it inversed... like else statement?
+
 // should we use brand new name like question?
 // rather than using long conditional,
 // or using confusing optional or condition,
-// let's call them an "option"
+// let's call them a "(TBD)"
 
 // can a generic operator come later than array indicing?
 // can a function be called like `a[0]<string>()`?
@@ -83,3 +113,8 @@ a[0]();
 // but it was not valid from the first place. the correct way was
 const a = <T>(param: T): T => "hello" as unknown as T;
 const a: <T>(param: T): T = ()=>{} // also works in TS, kinda dirty
+
+// possible candidates for call non-terminal name:
+// mapping, application, projection, and lookup (or access)
+// but lookup implies retrieving an existing value from DS using a key.
+// so mapping should be the best one, unambiguous term to describe this.
