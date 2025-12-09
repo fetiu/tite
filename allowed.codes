@@ -120,3 +120,33 @@ const a: <T>(param: T): T = ()=>{} // also works in TS, kinda dirty
 // so mapping should be the best one, unambiguous term to describe this.
 
 we will call a primary (or identifier) as "term", based on type theory.
+
+// to allow rebinding, below rule should apply:
+// literal = name [ operator ] '=' value" | ...
+// this works similarly to rust mutable binding
+
+a? b *= 1 : c *= 2 // this is valid
+a? b := 1 : c *= 2 // this is ambiguous
+a? b = 1 : c = 2 // so this is the way to go 
+// let's not change the way people are used to,
+// although it's a shame to not use := operator.
+// in a math context, symbol like := or def= might be used 
+// to denote definitions to distinguish it from an equation.
+// but programming conventions has been made to use == here.
+// there's no great reason to take such a pedantic approach.
+
+// semicolon is a legacy of statement-based, imperative programming.
+// we only recommend using comma, but if omitted, should consistently omit it.
+
+// dot at the front of a name will hide it from external references (private).
+// leave bindings uninitialized to denote mutable, initialized for immutable.
+// there is no default value to be overridden later, which often becomes chaos.
+// this will allow OOP concepts like traits and impls, private mutable as well.
+// but, how could private members get a value on instantiation? through method?
+// we may have to force private members to be immutable, for functional purity.
+
+// a value starting with '>' denotes a closure.
+// a closure captures the environment in which they were defined.
+// it becomes function if it references name of parameters (tuple).
+// it becomes method if it references name of outer object members.
+// keep it developer friendly, objects are a poor man's closures.

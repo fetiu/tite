@@ -83,8 +83,8 @@ main: () => {
         print(i)
     }
 
-    a...b
-    ...b
+    a..b
+    ..b
 
     a?: int = 1
     a?: {

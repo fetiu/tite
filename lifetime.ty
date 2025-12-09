@@ -1,0 +1,41 @@
+
+Object: {
+    item: Object = null
+    setItem: (i: Object) => {
+        item = i // should this move ownership? or create a copy?
+    }
+    giveSelf: (o: Object) => {
+        o.setItem(self) // is it a vaild approach? `self` wasn't defined, and retun o?
+    }
+}
+
+func: (o: Object) => {
+    x: Object
+    y: Object
+
+    y.setItem(o) // `y` has shorter lifetime than `o`, so `y.item` will be pointing `a`
+    o.setItem(x) // this won't affect any on `a`, only create changes on local copy `o`
+    < o // explicitly return `o` if we want to keep the changes made in the local scope
+}
+
+main: () => {
+    a: Object
+    b: Object
+    c: Object
+
+    b.setItem(a)
+    c.setItem(a)
+
+    func(a)
+
+    // can't change values outside. can't rebind
+    x: Person = {age: 21, name: "Jane Doe"}
+    // method may change the values inside
+    x.rename("John Doe");
+
+    y: Person
+    // can rebind the whole literal. can't change values
+    y = {age: 0, name: ""}
+    // only method may change the values inside
+    y.init()
+}
